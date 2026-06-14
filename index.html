@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khaata — Handwritten OCR</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+  <div class="page">
+
+    <!-- Margin rule, like a school notebook -->
+    <div class="margin-rule" aria-hidden="true"></div>
+
+    <header class="header">
+      <h1 class="title">Khaata</h1>
+      <p class="subtitle">Apni handwritten page upload karo — type-ready text turant niche aa jaayega.</p>
+    </header>
+
+    <main class="sheet">
+
+      <!-- Upload zone -->
+      <section class="upload-zone" id="upload-zone">
+        <input type="file" id="file-input" accept="image/png, image/jpeg" hidden />
+
+        <div id="upload-prompt" class="upload-prompt">
+          <div class="pencil-icon" aria-hidden="true">✎</div>
+          <p class="upload-text">Page ki photo yahan choose karo</p>
+          <button class="btn btn-outline" id="choose-btn" type="button">Image Chuno</button>
+          <p class="upload-hint">JPG ya PNG &middot; seedhi, well-lit photo behtar result degi</p>
+        </div>
+
+        <div id="preview-wrap" class="preview-wrap hidden">
+          <img id="preview-img" alt="Uploaded page preview" />
+          <div class="preview-actions">
+            <button class="btn btn-primary" id="extract-btn" type="button">Text Nikalo</button>
+            <button class="btn btn-text" id="change-btn" type="button">Doosri image chuno</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Status / loading -->
+      <section id="status" class="status hidden" aria-live="polite">
+        <span class="spinner" aria-hidden="true"></span>
+        <span id="status-text">Padh raha hoon, ek line ek line...</span>
+      </section>
+
+      <!-- Error -->
+      <section id="error-box" class="error-box hidden" role="alert">
+        <strong>Kuch gadbad ho gayi:</strong> <span id="error-text"></span>
+      </section>
+
+      <!-- Result -->
+      <section id="result" class="result hidden">
+        <div class="result-head">
+          <h2 class="result-title">Nikla hua likhai</h2>
+          <div class="result-actions">
+            <button class="btn btn-outline btn-small" id="copy-btn" type="button">Copy</button>
+            <button class="btn btn-outline btn-small" id="download-btn" type="button">.txt Download</button>
+          </div>
+        </div>
+        <textarea id="result-text" class="result-text" spellcheck="false"></textarea>
+        <p class="result-note">Galtiyaan dikhe to seedha yahin edit kar sakti ho — ye normal text box hai.</p>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <p>EasyOCR line-detection + TrOCR handwriting recognition &middot; offline ke baad chalega</p>
+    </footer>
+
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
